@@ -9,7 +9,13 @@ public class MemberTests {
 
 	@Test(expected=IllegalArgumentException.class)
 	public void ConstructorIllegalInput() {
-		new Member("", 0);
+		new Member("", "0");
+		//new Member();
+	}
+	
+	@Test
+	public void ConstructorCorrectInput() {
+		new Member("Robert", "9202171519");
 		//new Member();
 	}
 

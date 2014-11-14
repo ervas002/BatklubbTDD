@@ -2,7 +2,7 @@ package Batklubb;
 
 public class Member {
 
-	public Member(String name, int socNumber) {
+	public Member(String name, String socNumber) {
 		throw new IllegalArgumentException();
 	}
 }
