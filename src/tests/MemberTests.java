@@ -9,7 +9,8 @@ public class MemberTests {
 
 	@Test(expected=IllegalArgumentException.class)
 	public void ConstructorIllegalInput() {
-		new Member();
+		new Member("", 0);
+		//new Member();
 	}
 
 }
