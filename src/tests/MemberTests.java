@@ -16,6 +16,7 @@ public class MemberTests {
 	@Test
 	public void ConstructorCorrectInput() {
 		new Member("Robert", "9202171519");
+		new Member("CuntDestroyer", "1337001337");
 		//new Member();
 	}
 
