@@ -1,8 +1,10 @@
 package tests;
 
 import static org.junit.Assert.*;
+//import static org.mockito.Mockito.*;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
 
 import Batklubb.*;
 
@@ -20,10 +22,16 @@ public class MemberTests {
 	public void ConstructorCorrectInput() {
 		for(int i = 0; i < 100; i++){
 			String name = generateValidName();
-			String socNum = generateValidSocNumber();
+			String socNum = generateValidSocNumber();			
 			//System.out.println(name + " " + socNum);
 			new Member(name, socNum);
 		}
+	}
+	
+	@Test
+	public void testAddBoat(){		
+		Member m = generateMember();
+		m.addBoat(new Boat());
 	}
 
 	@Test
@@ -33,6 +41,10 @@ public class MemberTests {
 		Member m = new Member(name, socNum);
 		assertEquals(m.getName(), name);
 		assertEquals(m.getSocNum(), socNum);
+	}
+	
+	private Member generateMember(){
+		return new Member(generateValidName(), generateValidSocNumber());
 	}
 	
 	private String generateValidName(){
