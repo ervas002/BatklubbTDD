@@ -6,9 +6,9 @@ public class Member {
 	String m_socNumber;
 	
 	public Member(String name, String socNumber) {
-		if((name.equals("Robert") && socNumber.equals("9202171519")) ||
-		   (name.equals("CuntDestroyer") && socNumber.equals("1337001337"))){
-			
+		if(name.length() >= 3 && socNumber.length() == 10){
+			m_name = name;
+			m_socNumber = socNumber;
 		}else
 			throw new IllegalArgumentException();
 	}
