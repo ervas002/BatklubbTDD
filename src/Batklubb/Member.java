@@ -5,6 +5,18 @@ public class Member {
 	String m_name;
 	String m_socNumber;
 	
+	
+	public String getName()
+	{
+		return m_name;
+	}
+
+	public String getSocNum()
+	{
+		return m_socNumber;
+	}
+	
+	
 	public Member(String name, String socNumber) {
 		if(name.length() >= 3 && socNumber.length() == 10){
 			m_name = name;
