@@ -21,11 +21,20 @@ public class MemberTests {
 		for(int i = 0; i < 100; i++){
 			String name = generateValidName();
 			String socNum = generateValidSocNumber();
-			System.out.println(name + " " + socNum);
+			//System.out.println(name + " " + socNum);
 			new Member(name, socNum);
 		}
 	}
 
+	@Test
+	public void testGetMemberInfo(){
+		String name = generateValidName();
+		String socNum = generateValidSocNumber();
+		Member m = new Member(name, socNum);
+		assertEquals(m.getName(), name);
+		assertEquals(m.getSocNum(), socNum);
+	}
+	
 	private String generateValidName(){
 		StringBuilder sb = new StringBuilder();
 		SecureRandom random = new SecureRandom();
