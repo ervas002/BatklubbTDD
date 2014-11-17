@@ -1,10 +1,13 @@
 package Batklubb;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Member {
 
 	String m_name;
 	String m_socNumber;
-	
+	List<Boat> m_boats = new ArrayList<Boat>();
 	
 	public String getName()
 	{
@@ -23,5 +26,10 @@ public class Member {
 			m_socNumber = socNumber;
 		}else
 			throw new IllegalArgumentException();
+	}
+
+	public void addBoat(Boat boat) 
+	{
+		m_boats.add(boat);
 	}
 }
