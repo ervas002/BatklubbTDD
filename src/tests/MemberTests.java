@@ -43,6 +43,12 @@ public class MemberTests {
 		assertEquals(b, m.getBoat(0));
 	}
 	
+	@Test(expected=IllegalArgumentException.class)
+	public void testGetBoatIllegalInput(){		
+		Member m = generateMember();
+		m.getBoat(-1);
+	}
+	
 	@Test
 	public void testGetBoats(){
 		Member m = generateMember();
