@@ -10,4 +10,11 @@ public class BoatTests {
 	public void testConstructorIllegalInput(){		
 		new Boat(null,null);
 		}
+	
+	@Test
+	public void testBoatGets(){
+		Boat b = new Boat(BoatType.MotorBoatTits, BoatSize.LARGE);
+		assertEquals(BoatType.MotorBoatTits, b.getBoatType());
+		assertEquals(BoatSize.LARGE, b.getBoatSize());
+	}
 }
