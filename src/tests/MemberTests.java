@@ -44,9 +44,15 @@ public class MemberTests {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testGetBoatIllegalInput(){		
+	public void testGetBoatNegativeIllegalInput(){		
 		Member m = generateMember();
 		m.getBoat(-1);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testGetBoatIllegalInput(){		
+		Member m = generateMember();
+		m.getBoat(4);
 	}
 	
 	@Test
