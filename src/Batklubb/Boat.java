@@ -2,7 +2,7 @@ package Batklubb;
 
 public class Boat {
 
-	
+	private int m_mooring = 0;
 	private BoatType m_boatType;
 	private BoatSize m_boatSize;
 
@@ -26,4 +26,13 @@ public class Boat {
 		if(a_mooring < 1)
 			throw new IllegalArgumentException();		
 	}
+
+	public int getMooring() {
+		if(m_mooring > 0)
+		{
+			return m_mooring;
+		}
+		throw new NullPointerException();
+	}
+	
 }
