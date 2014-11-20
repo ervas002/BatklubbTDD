@@ -27,8 +27,8 @@ public class Member {
 			throw new IllegalArgumentException();
 	}
 
-	public void addBoat(Boat boat) 
-	{
-		m_boats.add(boat);
+	public void addBoat(Boat a_boat) {
+		m_boats.add(a_boat);
+		
 	}
 }

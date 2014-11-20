@@ -28,10 +28,11 @@ public class MemberTests {
 		}
 	}
 	
-	@Test
-	public void testAddBoat(){		
+	@Test(expected=IllegalArgumentException.class)
+	public void testAddNullBoat(){		
 		Member m = generateMember();
-		m.addBoat(new Boat());
+		m.addBoat(null);
+		//new Boat(BoatType.MotorBoatTits, BoatSize.MEDIUM)
 	}
 
 	@Test

@@ -41,6 +41,6 @@ public class BoatTests {
 	public void testGetExpiryDate(){
 		Boat b = new Boat(BoatType.MotorBoatTits, BoatSize.LARGE);		
 		b.setMooring(1);
-		assertNotNull(b.getExpiryDate());
+		assertNotNull(b.getExpiryDate());		
 	}
 }
