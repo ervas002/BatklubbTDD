@@ -34,7 +34,7 @@ public class Member {
 	}
 
 	public Boat getBoat(int a_index) {
-		if(a_index >= 0)
+		if(a_index >= 0 && m_boats.size() > a_index)
 		{
 			return m_boats.get(a_index);
 		}
