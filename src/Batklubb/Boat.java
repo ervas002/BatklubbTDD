@@ -1,7 +1,9 @@
 package Batklubb;
 
 public class Boat {
-
+	public Boat(){
+		throw new IllegalArgumentException();
+	}
 }
 
 enum BoatType{
