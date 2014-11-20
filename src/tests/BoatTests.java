@@ -17,4 +17,10 @@ public class BoatTests {
 		assertEquals(BoatType.MotorBoatTits, b.getBoatType());
 		assertEquals(BoatSize.LARGE, b.getBoatSize());
 	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testSetMooringIllegalInput(){
+		Boat b = new Boat(BoatType.MotorBoatTits, BoatSize.LARGE);		
+		b.setMooring(0);
+	}
 }
