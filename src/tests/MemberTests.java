@@ -44,6 +44,22 @@ public class MemberTests {
 	}
 	
 	@Test
+	public void testGetBoats(){
+		Member m = generateMember();
+		ArrayList<Boat> bList = new ArrayList<>();
+		Boat b1 = new Boat(BoatType.MotorBoatTits, BoatSize.MEDIUM);
+		Boat b2 = new Boat(BoatType.BorgarBåt, BoatSize.LARGE);
+		Boat b3 = new Boat(BoatType.Canoe, BoatSize.SMALL);
+		bList.add(b1);
+		bList.add(b2);
+		bList.add(b3);
+		m.addBoat(b1);
+		m.addBoat(b2);
+		m.addBoat(b3);
+		assertEquals(bList, m.getBoats());
+	}
+	
+	@Test
 	public void testGetMemberInfo(){
 		String name = generateValidName();
 		String socNum = generateValidSocNumber();
