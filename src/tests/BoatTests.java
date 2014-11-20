@@ -9,5 +9,6 @@ public class BoatTests {
 	@Test(expected=IllegalArgumentException.class)
 	public void testConstructorIllegalInput(){		
 		new Boat();
+		new Boat(null,null);		
 	}
 }
