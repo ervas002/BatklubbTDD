@@ -34,8 +34,11 @@ public class Member {
 	}
 
 	public Boat getBoat(int a_index) {
-		
-		return m_boats.get(a_index);
+		if(a_index >= 0)
+		{
+			return m_boats.get(a_index);
+		}
+		throw new IllegalArgumentException();
 	}
 	
 	public List<Boat> getBoats(){
