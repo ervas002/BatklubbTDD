@@ -23,4 +23,10 @@ public class BoatTests {
 		Boat b = new Boat(BoatType.MotorBoatTits, BoatSize.LARGE);		
 		b.setMooring(0);
 	}
+	
+	@Test(expected=NullPointerException.class)
+	public void testGetMooringEmpty(){
+		Boat b = new Boat(BoatType.MotorBoatTits, BoatSize.LARGE);		
+		b.getMooring();
+	}
 }
