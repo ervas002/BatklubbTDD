@@ -28,7 +28,8 @@ public class Member {
 	}
 
 	public void addBoat(Boat a_boat) {
-		m_boats.add(a_boat);
+		if(a_boat == null)
+			throw new IllegalArgumentException();
 		
 	}
 }
