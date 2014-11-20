@@ -40,7 +40,7 @@ public class MemberTests {
 		Member m = generateMember();
 		Boat b = new Boat(BoatType.MotorBoatTits, BoatSize.MEDIUM);
 		m.addBoat(b);
-		AssertEquals(b, m.getBoat(0));
+		assertEquals(b, m.getBoat(0));
 	}
 	
 	@Test

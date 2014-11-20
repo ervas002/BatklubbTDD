@@ -30,6 +30,11 @@ public class Member {
 	public void addBoat(Boat a_boat) {
 		if(a_boat == null)
 			throw new IllegalArgumentException();
+		m_boats.add(a_boat);
+	}
+
+	public Boat getBoat(int a_index) {
 		
+		return m_boats.get(a_index);
 	}
 }
