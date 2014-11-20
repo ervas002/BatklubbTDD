@@ -19,7 +19,6 @@ public class Member {
 		return m_socNumber;
 	}
 	
-	
 	public Member(String name, String socNumber) {
 		if(name.length() >= 3 && socNumber.length() == 10){
 			m_name = name;
