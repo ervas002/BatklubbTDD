@@ -24,7 +24,8 @@ public class Boat {
 
 	public void setMooring(int a_mooring) {
 		if(a_mooring < 1)
-			throw new IllegalArgumentException();		
+			throw new IllegalArgumentException();	
+		m_mooring = a_mooring;
 	}
 
 	public int getMooring() {
