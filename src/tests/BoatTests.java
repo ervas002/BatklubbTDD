@@ -7,7 +7,7 @@ import Batklubb.*;
 public class BoatTests {
 
 	@Test(expected=IllegalArgumentException.class)
-	public void testConstructor(){		
-		new Boat();		
+	public void testConstructorIllegalInput(){		
+		new Boat();
 	}
 }
