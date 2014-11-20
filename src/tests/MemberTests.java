@@ -36,6 +36,14 @@ public class MemberTests {
 	}
 
 	@Test
+	public void testAddBoat(){		
+		Member m = generateMember();
+		Boat b = new Boat(BoatType.MotorBoatTits, BoatSize.MEDIUM);
+		m.addBoat(b);
+		AssertEquals(b, m.getBoat(0));
+	}
+	
+	@Test
 	public void testGetMemberInfo(){
 		String name = generateValidName();
 		String socNum = generateValidSocNumber();
