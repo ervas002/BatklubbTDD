@@ -37,4 +37,8 @@ public class Member {
 		
 		return m_boats.get(a_index);
 	}
+	
+	public List<Boat> getBoats(){
+		return m_boats;
+	}
 }
