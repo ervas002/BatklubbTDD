@@ -2,6 +2,7 @@ package Batklubb;
 
 public class Boat {
 
+	
 	private BoatType m_boatType;
 	private BoatSize m_boatSize;
 
@@ -19,5 +20,10 @@ public class Boat {
 
 	public BoatSize getBoatSize() {
 		return m_boatSize;
+	}
+
+	public void setMooring(int a_mooring) {
+		if(a_mooring < 1)
+			throw new IllegalArgumentException();		
 	}
 }
