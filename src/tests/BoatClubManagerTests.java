@@ -18,6 +18,6 @@ public class BoatClubManagerTests {
 		when(iom.getNameInput()).thenReturn("kisskorv");
 		when(iom.getSocNumInput()).thenReturn("9205121337");
 		bcm.addMember(iom.getNameInput(), iom.getSocNumInput());
-		assertEquals(1, bcm.getMembers().length);
+		assertEquals(1, bcm.getMembers().size());
 	}
 }
