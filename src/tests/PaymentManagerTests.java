@@ -47,6 +47,23 @@ public class PaymentManagerTests {
 		m_pManager.makePayment(m, b);
 	}
 	
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void MakePaymentOnValidMemberButInvalidBoat()
+	{
+		BoatClubManager bcm = new BoatClubManager();
+		when(m_iom.getNameInput()).thenReturn(m_memberGenerator.generateValidName());
+		when(m_iom.getSocNumInput()).thenReturn(m_memberGenerator.generateValidSocNumber());
+		
+		bcm.addMember(m_iom.getNameInput(), m_iom.getSocNumInput());
+		Member m = bcm.getMembers().get(0);
+		
+	
+		bcm.saveMembersToDatabase();
+		m_pManager.makePayment(m, null);
+	}
+	
+	
 	@Test
 	public void MakePaymentOnValidMemberCheckIfHasPayed()
 	{
@@ -63,4 +80,73 @@ public class PaymentManagerTests {
 		m_pManager.makePayment(m, b);
 		assertTrue(m_pManager.hasPayed(m, b));
 	}
+	
+
+	 
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void MakePaymentOnSavedMemberButNotBoat()
+	{
+		BoatClubManager bcm = new BoatClubManager();
+		when(m_iom.getNameInput()).thenReturn(m_memberGenerator.generateValidName());
+		when(m_iom.getSocNumInput()).thenReturn(m_memberGenerator.generateValidSocNumber());
+		
+		bcm.addMember(m_iom.getNameInput(), m_iom.getSocNumInput());
+		Member m = bcm.getMembers().get(0);
+		bcm.saveMembersToDatabase();
+		m_pManager.makePayment(m, null);
+		
+		 
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void HasPaymentOnNullBoat()
+	{
+		BoatClubManager bcm = new BoatClubManager();
+		when(m_iom.getNameInput()).thenReturn(m_memberGenerator.generateValidName());
+		when(m_iom.getSocNumInput()).thenReturn(m_memberGenerator.generateValidSocNumber());
+		
+		bcm.addMember(m_iom.getNameInput(), m_iom.getSocNumInput());
+		Member m = bcm.getMembers().get(0);
+		bcm.saveMembersToDatabase();
+		m_pManager.hasPayed(m, null);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testHasPayedOnNullMember()
+	{
+		Boat b = new Boat(BoatType.MotorBoatTits, BoatSize.LARGE);	
+		
+		m_pManager.hasPayed(null, b);
+	}
+	
+	@Test
+	public void testHasPayedOnValidMemberInvalidBoat()
+	{
+		BoatClubManager bcm = new BoatClubManager();
+		when(m_iom.getNameInput()).thenReturn(m_memberGenerator.generateValidName());
+		when(m_iom.getSocNumInput()).thenReturn(m_memberGenerator.generateValidSocNumber());
+		
+		bcm.addMember(m_iom.getNameInput(), m_iom.getSocNumInput());
+		Member m = bcm.getMembers().get(0);
+		bcm.saveMembersToDatabase();
+		Boat b = new Boat(BoatType.MotorBoatTits, BoatSize.LARGE);
+		assertFalse(m_pManager.hasPayed(m, b));
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testHasPayedOnNotSavedMember()
+	{
+		BoatClubManager bcm = new BoatClubManager();
+		when(m_iom.getNameInput()).thenReturn(m_memberGenerator.generateValidName());
+		when(m_iom.getSocNumInput()).thenReturn(m_memberGenerator.generateValidSocNumber());
+		
+		bcm.addMember(m_iom.getNameInput(), m_iom.getSocNumInput());
+		Member m = bcm.getMembers().get(0);
+		Boat b = new Boat(BoatType.MotorBoatTits, BoatSize.LARGE);
+		m.addBoat(b);
+		m_pManager.hasPayed(m, b);
+	}
+
+	
 }

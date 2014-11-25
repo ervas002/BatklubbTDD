@@ -49,11 +49,15 @@ public class BoatClubManagerTests {
 			bcm.addMember(iom.getNameInput(), iom.getSocNumInput());
 			m_memberList.add(new Member(iom.getNameInput(), iom.getSocNumInput()));
 		}
+		Boat b = new Boat(BoatType.MotorBoatTits, BoatSize.LARGE);
+		bcm.getMembers().get(0).addBoat(b);
+		b.setMooring(1);
 		bcm.saveMembersToDatabase();
 		assertEquals(bcm.getMembersFromDatabase().size(), m_memberList.size());
 	}
 
 	
+
 	      
 	@Test(expected = IllegalArgumentException.class)
 	public void TestIfMooringAvailableWithInvalidInput()
@@ -120,10 +124,14 @@ public class BoatClubManagerTests {
 		
 		bcm.addMember(iom.getNameInput(), iom.getSocNumInput());
 		Member m = bcm.getMembers().get(0);
-		for(int i = 0; i < 100; i++)
+		for(int i = 0; i < 50; i++)
 		{
-			Boat b = new Boat(BoatType.MotorBoatTits, BoatSize.LARGE);	
-			m.addBoat(b);
+			Boat ba = new Boat(BoatType.MotorBoatTits, BoatSize.SMALL);	
+			Boat bb = new Boat(BoatType.MotorBoatTits, BoatSize.MEDIUM);
+			Boat bc = new Boat(BoatType.MotorBoatTits, BoatSize.LARGE);
+			m.addBoat(ba);
+			m.addBoat(bb);
+			m.addBoat(bc);
 		}
 		for(Boat b : m.getBoats())
 		{
@@ -131,6 +139,19 @@ public class BoatClubManagerTests {
 		}
 	}
 	
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void TestSetMooringOnInvalidBoat(){
+		BoatClubManager bcm = new BoatClubManager();
+		
+		when(iom.getNameInput()).thenReturn(memberGenerator.generateValidName());
+		when(iom.getSocNumInput()).thenReturn(memberGenerator.generateValidSocNumber());
+		
+		bcm.addMember(iom.getNameInput(), iom.getSocNumInput());
+		Member m = bcm.getMembers().get(0);
+			
+		bcm.CheckAndSetMooring(m, null);
+	}
 	
 	public String getNewMemberName() {
 		return memberGenerator.generateValidName();

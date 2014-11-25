@@ -27,8 +27,8 @@ public class BoatTests {
 	@Test
 	public void testSetMooring(){
 		Boat b = new Boat(BoatType.MotorBoatTits, BoatSize.LARGE);		
-		b.setMooring(1);
-		assertEquals(1, b.getMooring());
+		b.setMooring(2);
+		assertEquals(2, b.getMooring());
 	}
 	
 	@Test(expected=NullPointerException.class)

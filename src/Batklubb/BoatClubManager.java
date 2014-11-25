@@ -60,30 +60,48 @@ public class BoatClubManager {
 				socNum.appendChild(doc.createTextNode(m.getSocNum()));
 				member.appendChild(socNum);
 				
-				Element boats = doc.createElement("boats");
-				for(Boat b : m.m_boats){
-					Element boat = doc.createElement("boat");
-
-					Element mooring = doc.createElement("mooring");
-					mooring.appendChild(doc.createTextNode(Integer.toString(b.getMooring())));
-					boat.appendChild(mooring);
-					
-					Element expiryDate = doc.createElement("expiryDate");
-					expiryDate.appendChild(doc.createTextNode(new SimpleDateFormat().format(b.getExpiryDate())));
-					boat.appendChild(expiryDate);
-					
-					Element boatType = doc.createElement("boatType");
-					boatType.appendChild(doc.createTextNode(b.getBoatType().toString()));
-					boat.appendChild(boatType);
-					
-					Element boatSize = doc.createElement("boatSize");
-					boatSize.appendChild(doc.createTextNode(b.getBoatSize().toString()));
-					boat.appendChild(boatSize);
-					
-					boats.appendChild(boat);
-				}
+				 
 				
-				member.appendChild(boats);
+				if(m.m_boats.size() > 0)
+				{
+					Element boats = doc.createElement("boats");
+					for(Boat b : m.m_boats){
+						Element boat = doc.createElement("boat");
+	
+						Element mooring = doc.createElement("mooring");
+						
+						try{
+							mooring.appendChild(doc.createTextNode(Integer.toString(b.getMooring())));
+						}
+						catch(Exception e){
+							 mooring.appendChild(doc.createTextNode("0"));
+						}
+						boat.appendChild(mooring);
+						
+						Element expiryDate = doc.createElement("expiryDate");
+						try{
+							expiryDate.appendChild(doc.createTextNode(new SimpleDateFormat().format(b.getExpiryDate())));
+						}
+						catch(Exception e)
+						{
+							expiryDate.appendChild(doc.createTextNode(""));
+						}
+					
+						boat.appendChild(expiryDate);
+						
+						Element boatType = doc.createElement("boatType");
+						boatType.appendChild(doc.createTextNode(b.getBoatType().toString()));
+						boat.appendChild(boatType);
+						
+						Element boatSize = doc.createElement("boatSize");
+						boatSize.appendChild(doc.createTextNode(b.getBoatSize().toString()));
+						boat.appendChild(boatSize);
+						
+						boats.appendChild(boat);
+					}
+					 
+					member.appendChild(boats);
+				}
 				members.appendChild(member);
 			}
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -120,20 +138,29 @@ public class BoatClubManager {
 					NodeList boats = mElement.getElementsByTagName("boats");
 					Member mObject = new Member(mName, mSocNum); 
 					//List<Boat> mObjectbList = new ArrayList<Boat>();
-					if(boats.getLength() == 0){
+					if(boats.getLength() > 0){
 						for(int y = 0; y < boats.getLength(); y++){
 							Node boat = boats.item(y);
 							if(boat.getNodeType() == Node.ELEMENT_NODE){
 								Element bElement = (Element)boat;
 								
-								int mooring = Integer.parseInt(bElement.getElementsByTagName("mooring").item(0).getFirstChild().getTextContent());
-								Date expiryDate = new SimpleDateFormat().parse(bElement.getElementsByTagName("expiryDate").item(0).getTextContent());
 								BoatType bType = BoatType.valueOf(bElement.getElementsByTagName("boatType").item(0).getTextContent());
 								BoatSize bSize = BoatSize.valueOf(bElement.getElementsByTagName("boatSize").item(0).getTextContent());
 								
 								Boat b = new Boat(bType, bSize);
-								b.setMooring(mooring);
-								b.setExpiryDate(expiryDate);
+								
+								int mooring;
+								Date expiryDate;
+								try
+								{
+									mooring = Integer.parseInt(bElement.getElementsByTagName("mooring").item(0).getFirstChild().getTextContent());
+									expiryDate = new SimpleDateFormat().parse(bElement.getElementsByTagName("expiryDate").item(0).getTextContent());
+									b.setMooring(mooring);
+									b.setExpiryDate(expiryDate);
+								}
+								catch(Exception e){
+								}
+
 								mObject.addBoat(b);
 							}
 						}
