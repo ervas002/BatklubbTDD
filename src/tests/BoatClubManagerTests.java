@@ -111,6 +111,27 @@ public class BoatClubManagerTests {
 	}
 	
 	
+	@Test(expected = IllegalArgumentException.class)
+	public void TestSetMooringOnValidInputButWithTooManyBoats(){
+		BoatClubManager bcm = new BoatClubManager();
+		
+		when(iom.getNameInput()).thenReturn(memberGenerator.generateValidName());
+		when(iom.getSocNumInput()).thenReturn(memberGenerator.generateValidSocNumber());
+		
+		bcm.addMember(iom.getNameInput(), iom.getSocNumInput());
+		Member m = bcm.getMembers().get(0);
+		for(int i = 0; i < 100; i++)
+		{
+			Boat b = new Boat(BoatType.MotorBoatTits, BoatSize.LARGE);	
+			m.addBoat(b);
+		}
+		for(Boat b : m.getBoats())
+		{
+			bcm.CheckAndSetMooring(m, b);
+		}
+	}
+	
+	
 	public String getNewMemberName() {
 		return memberGenerator.generateValidName();
 	}
