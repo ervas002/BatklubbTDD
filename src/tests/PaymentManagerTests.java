@@ -47,4 +47,20 @@ public class PaymentManagerTests {
 		m_pManager.makePayment(m, b);
 	}
 	
+	@Test
+	public void MakePaymentOnValidMemberCheckIfHasPayed()
+	{
+		BoatClubManager bcm = new BoatClubManager();
+		when(m_iom.getNameInput()).thenReturn(m_memberGenerator.generateValidName());
+		when(m_iom.getSocNumInput()).thenReturn(m_memberGenerator.generateValidSocNumber());
+		
+		bcm.addMember(m_iom.getNameInput(), m_iom.getSocNumInput());
+		Member m = bcm.getMembers().get(0);
+		
+		Boat b = new Boat(BoatType.MotorBoatTits, BoatSize.LARGE);	
+		m.addBoat(b);
+		bcm.saveMembersToDatabase();
+		m_pManager.makePayment(m, b);
+		assertTrue(m_pManager.hasPayed(m, b));
+	}
 }
