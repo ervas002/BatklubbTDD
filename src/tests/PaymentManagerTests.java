@@ -6,7 +6,12 @@ import static org.mockito.Mockito.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import Batklubb.Boat;
+import Batklubb.BoatClubManager;
+import Batklubb.BoatSize;
+import Batklubb.BoatType;
 import Batklubb.IOmanager;
+import Batklubb.Member;
 import Batklubb.PaymentManager;
 
 public class PaymentManagerTests {
@@ -29,6 +34,17 @@ public class PaymentManagerTests {
 		m_pManager.makePayment(null, null);
 	}
 	
-	
+	@Test(expected = IllegalArgumentException.class)
+	public void MakePaymentOnNotSavedMember()
+	{
+		when(m_iom.getNameInput()).thenReturn(m_memberGenerator.generateValidName());
+		when(m_iom.getSocNumInput()).thenReturn(m_memberGenerator.generateValidSocNumber());
+		
+		Member m = new Member(m_iom.getNameInput(), m_iom.getSocNumInput());
+		Boat b = new Boat(BoatType.MotorBoatTits, BoatSize.LARGE);	
+		m.addBoat(b);
+		
+		m_pManager.makePayment(m, b);
+	}
 	
 }
