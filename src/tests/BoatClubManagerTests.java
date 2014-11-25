@@ -66,9 +66,29 @@ public class BoatClubManagerTests {
 	public void TestMooringWithUnregisterdMember(){
 		BoatClubManager bcm = new BoatClubManager();
 		
-		Member m = new Member("Robert", "9202171519");
+		
+		when(iom.getNameInput()).thenReturn(memberGenerator.generateValidName());
+		when(iom.getSocNumInput()).thenReturn(memberGenerator.generateValidSocNumber());
+		
+		Member m = new Member(iom.getNameInput(), iom.getSocNumInput());
 		Boat b = new Boat(BoatType.MotorBoatTits, BoatSize.LARGE);	
 		m.addBoat(b);
+		
+		bcm.CheckAndSetMooring(m, b);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void TestMooringWithUnregisterdBoat(){
+BoatClubManager bcm = new BoatClubManager();
+		
+		
+		when(iom.getNameInput()).thenReturn(memberGenerator.generateValidName());
+		when(iom.getSocNumInput()).thenReturn(memberGenerator.generateValidSocNumber());
+		
+		bcm.addMember(iom.getNameInput(), iom.getSocNumInput());
+		Member m = bcm.getMembers().get(0);
+		Boat b = new Boat(BoatType.MotorBoatTits, BoatSize.LARGE);	
+		 
 		
 		bcm.CheckAndSetMooring(m, b);
 	}
