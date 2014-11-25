@@ -29,7 +29,7 @@ public class BoatClubManager {
 	
 	private List<Member> m_memberList = new ArrayList<>();
 	private int m_currentMooring = 0;
-	
+	private int m_maxMooring = 100;
 	
 	public List<Member> getMembers(){
 		return m_memberList;
@@ -161,15 +161,27 @@ public class BoatClubManager {
 			case SMALL:
 				boatSize = 1;
 			case MEDIUM:
-				boatSize = 1;
+				boatSize = 2;
 			case LARGE:
-				boatSize = 1;
+				boatSize = 3;
 			}
-			boat.setMooring(m_currentMooring + boatSize);
-			m_currentMooring += boatSize;
-			}			
+			// Throw an exception if there are not enough space for the boat.
+			if(getMooringSpaces() >= boatSize)
+			{
+				boat.setMooring(m_currentMooring + boatSize);
+				m_currentMooring += boatSize;
+			}
+			else
+			{
+				throw new IllegalArgumentException();
+			}
+		}			
 	}
 		
+	private int getMooringSpaces()
+	{
+		return m_maxMooring - m_currentMooring;
+	}
 		
 }
 	
