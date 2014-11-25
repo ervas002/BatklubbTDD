@@ -13,6 +13,7 @@ public class PaymentManager {
 		else
 		{
 			// Add has payed, and the date to the database.
+			// Include the member id (socNumber) and the boat information.
 		}
 		
 	}
