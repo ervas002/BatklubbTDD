@@ -149,7 +149,10 @@ public class BoatClubManager {
 	public void CheckAndSetMooring(Member member, Boat boat){
 		if(member == null || boat == null){
 			throw new IllegalArgumentException();
+		}else if(!m_memberList.contains(member)){
+			throw new IllegalArgumentException();
 		}
+		
 	}
 	
 
