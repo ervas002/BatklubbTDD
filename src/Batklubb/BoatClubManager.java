@@ -148,6 +148,7 @@ public class BoatClubManager {
 		return mList;
 	}
 
+	// Expects that the member has payed the mooring fee.
 	public void CheckAndSetMooring(Member member, Boat boat){
 		if(member == null || boat == null){
 			throw new IllegalArgumentException();
