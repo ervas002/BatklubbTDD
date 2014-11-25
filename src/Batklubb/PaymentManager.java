@@ -3,9 +3,16 @@ package Batklubb;
 public class PaymentManager {
 
 	public void makePayment(Member a_member, Boat a_boat) {
-		if(a_member == null || a_boat == null)
+		BoatClubManager bcm = new BoatClubManager();
+		
+		if(a_member == null || a_boat == null ||
+		   (!bcm.getMembersFromDatabase().contains(a_member) && !bcm.getMembers().contains(a_member)))
 		{
 			throw new IllegalArgumentException();
+		}
+		else
+		{
+			// Add has payed, and the date to the database.
 		}
 		
 	}
