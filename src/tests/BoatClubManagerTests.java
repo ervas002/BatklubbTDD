@@ -4,6 +4,9 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.junit.Before;
@@ -51,8 +54,17 @@ public class BoatClubManagerTests {
 	}
 
 	
+	      
+	@Test(expected = IllegalArgumentException.class)
+	public void TestIfMooringAvailableWithInvalidInput()
+	{
+		BoatClubManager bcm = new BoatClubManager();
+		bcm.CheckAndSetMooring(null, null);
+	}
 	
-	// HELP METHODS
+
+	
+	
 	public String getNewMemberName() {
 		return memberGenerator.generateValidName();
 	}
@@ -61,4 +73,5 @@ public class BoatClubManagerTests {
 		return memberGenerator.generateValidSocNumber();
 	}
 
+	
 }
