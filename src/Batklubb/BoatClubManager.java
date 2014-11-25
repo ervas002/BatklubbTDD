@@ -28,6 +28,8 @@ import org.w3c.dom.NodeList;
 public class BoatClubManager {
 	
 	private List<Member> m_memberList = new ArrayList<>();
+	private int m_currentMooring = 0;
+	
 	
 	public List<Member> getMembers(){
 		return m_memberList;
@@ -153,10 +155,24 @@ public class BoatClubManager {
 			throw new IllegalArgumentException();
 		}else if(!member.m_boats.contains(boat)){
 			throw new IllegalArgumentException();
-		}
-		
+		}else{
+			int boatSize = 0;			
+			switch(boat.getBoatSize()){
+			case SMALL:
+				boatSize = 1;
+			case MEDIUM:
+				boatSize = 1;
+			case LARGE:
+				boatSize = 1;
+			}
+			boat.setMooring(m_currentMooring + boatSize);
+			m_currentMooring += boatSize;
+			}			
 	}
+		
+		
+}
 	
 
 
-}
+
