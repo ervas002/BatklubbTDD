@@ -17,6 +17,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
  
 
+
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -145,7 +146,11 @@ public class BoatClubManager {
 		return mList;
 	}
 
-
+	public void CheckAndSetMooring(Member member, Boat boat){
+		if(member == null || boat == null){
+			throw new IllegalArgumentException();
+		}
+	}
 	
 
 
