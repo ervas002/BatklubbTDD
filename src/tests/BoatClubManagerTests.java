@@ -62,7 +62,16 @@ public class BoatClubManagerTests {
 		bcm.CheckAndSetMooring(null, null);
 	}
 	
-
+	@Test(expected = IllegalArgumentException.class)
+	public void TestMooringWithUnregisterdMember(){
+		BoatClubManager bcm = new BoatClubManager();
+		
+		Member m = new Member("Robert", "9202171519");
+		Boat b = new Boat(BoatType.MotorBoatTits, BoatSize.LARGE);	
+		m.addBoat(b);
+		
+		bcm.CheckAndSetMooring(m, b);
+	}
 	
 	
 	public String getNewMemberName() {
