@@ -43,6 +43,10 @@ public class Boat {
 		m_expiryDate = c.getTime();
 	}
 
+	public void setExpiryDate(Date expiryDate){
+		m_expiryDate = expiryDate;
+	}
+	
 	public int getMooring() {
 		if (m_mooring > 0) {
 			return m_mooring;
