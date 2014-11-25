@@ -79,7 +79,7 @@ public class BoatClubManagerTests {
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void TestMooringWithUnregisterdBoat(){
-BoatClubManager bcm = new BoatClubManager();
+		BoatClubManager bcm = new BoatClubManager();
 		
 		
 		when(iom.getNameInput()).thenReturn(memberGenerator.generateValidName());
@@ -91,6 +91,23 @@ BoatClubManager bcm = new BoatClubManager();
 		 
 		
 		bcm.CheckAndSetMooring(m, b);
+	}
+	
+	@Test
+	public void TestSetMooringOnValidInput(){
+		BoatClubManager bcm = new BoatClubManager();
+		
+		when(iom.getNameInput()).thenReturn(memberGenerator.generateValidName());
+		when(iom.getSocNumInput()).thenReturn(memberGenerator.generateValidSocNumber());
+		
+		bcm.addMember(iom.getNameInput(), iom.getSocNumInput());
+		Member m = bcm.getMembers().get(0);
+		Boat b = new Boat(BoatType.MotorBoatTits, BoatSize.LARGE);	
+		m.addBoat(b);
+		
+		bcm.CheckAndSetMooring(m, b);
+		// If the number we get from b.getMooring is larger than 0, then we have been assigned a mooring(skriver man så?)
+		assertTrue(b.getMooring()> 0);
 	}
 	
 	
