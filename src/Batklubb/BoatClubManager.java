@@ -151,6 +151,8 @@ public class BoatClubManager {
 			throw new IllegalArgumentException();
 		}else if(!m_memberList.contains(member)){
 			throw new IllegalArgumentException();
+		}else if(!member.m_boats.contains(boat)){
+			throw new IllegalArgumentException();
 		}
 		
 	}
